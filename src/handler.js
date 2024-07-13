@@ -7,6 +7,7 @@ import {
   progressBar,
   singer,
   title,
+  trackImg,
 } from "./selectors";
 import calculateTimeStamp from "./calculateTimeStamp";
 import tracks from "./state";
@@ -89,6 +90,7 @@ export const loadTrack = (track, volume = 0.05) => {
   )}`;
   title.innerText = tracks[trackIndex].title;
   singer.innerText = tracks[trackIndex].singer;
+  trackImg.src = tracks[trackIndex].imgSrc;
   track.volume = volume;
 
   //   return audio;

@@ -28,8 +28,14 @@ const listener = () => {
   audio.addEventListener("timeupdate", progressBarHandler);
   progressArea.addEventListener("click", progressAreaHandler);
   //   progressArea.addEventListener("click", progressBarHandler);
-  nextBtn.addEventListener("click", nextBtnHandler);
-  prevBtn.addEventListener("click", prevBtnHandler);
+  //   nextBtn.addEventListener("click", nextBtnHandler);
+  //   prevBtn.addEventListener("click", prevBtnHandler);
+  nextBtn.forEach((currentNextBtn) => {
+    currentNextBtn.addEventListener("click", nextBtnHandler);
+  });
+  prevBtn.forEach((currentPrevBtn) => {
+    currentPrevBtn.addEventListener("click", prevBtnHandler);
+  });
 };
 
 export default listener;
