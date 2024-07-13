@@ -1,0 +1,12 @@
+export const audio = document.querySelector("#audio");
+export const currentTime = document.querySelector("#currentTime");
+export const duration = document.querySelector("#duration");
+export const playBtn = document.querySelector("#playBtn");
+export const pauseBtn = document.querySelector("#pauseBtn");
+export const replayBtn = document.querySelector("#replayBtn");
+export const progressBar = document.querySelector("#progress-bar");
+export const progressArea = document.querySelector("#progress-area");
+export const nextBtn = document.querySelector("#nextBtn");
+export const prevBtn = document.querySelector("#prevBtn");
+export const title = document.querySelector("#title");
+export const singer = document.querySelector("#singer");
