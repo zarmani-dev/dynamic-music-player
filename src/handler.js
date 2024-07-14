@@ -9,9 +9,11 @@ import {
   singer,
   title,
   trackImg,
+  trackInfo,
 } from "./selectors";
 import calculateTimeStamp from "./calculateTimeStamp";
 import tracks from "./state";
+import "ldrs/ring";
 
 let interval;
 let trackIndex = 0;
@@ -30,19 +32,17 @@ const setTrack = (index) => {
 };
 
 setTrack(0);
+
 export const playBtnHandler = () => {
   console.log("audio play btn");
-  playBtn.classList.toggle("hidden");
-  pauseBtn.classList.toggle("hidden");
+  playPauseBtnHandler();
   //   setTrack(0);
   playTrack();
 };
 
 export const pauseBtnHandler = () => {
+  playPauseBtnHandler();
   audio.pause();
-
-  playBtn.classList.toggle("hidden");
-  pauseBtn.classList.toggle("hidden");
   clearInterval(interval);
 };
 
@@ -91,15 +91,20 @@ export const loadTrack = (track, volume = 0.15) => {
   currentTime.innerText = `${zeroPrefix(
     formattedCurrentTime.minute
   )}:${zeroPrefix(formattedCurrentTime.remainingSeconds)}`;
-  duration.innerText = `${zeroPrefix(formattedDuration.minute)}:${zeroPrefix(
-    formattedDuration.remainingSeconds
-  )}`;
-  title.innerText = tracks[trackIndex].title;
-  singer.innerText = tracks[trackIndex].singer;
-  trackImg.src = tracks[trackIndex].imgSrc;
-  track.volume = volume;
 
-  //   return audio;
+  // Handle image loading
+  trackImg.src = tracks[trackIndex].imgSrc;
+  trackImg.onload = () => {
+    duration.innerText = `${zeroPrefix(formattedDuration.minute)}:${zeroPrefix(
+      formattedDuration.remainingSeconds
+    )}`;
+    title.innerText = tracks[trackIndex].title;
+    singer.innerText = tracks[trackIndex].singer;
+  };
+  trackImg.onerror = () => {
+    console.log("Failed to load image:", trackImg.src);
+  };
+  track.volume = volume;
 };
 
 export const zeroPrefix = (num) => {
@@ -131,6 +136,11 @@ export const progressBarHandler = () => {
   progressBar.style.width = `${progressBarWidth}%`;
 };
 
+const playPauseBtnHandler = () => {
+  playBtn.classList.toggle("hidden");
+  pauseBtn.classList.toggle("hidden");
+};
+
 export const progressAreaHandler = (e) => {
   console.log(audio.currentTime);
   let progressWidth = progressArea.clientWidth;
@@ -143,7 +153,23 @@ export const progressAreaHandler = (e) => {
     playTrack();
   }
 };
-// audio.addEventListener("timeupdate", progressBarHandler);
+
+export const preNextObserver = () => {
+  const observerOptions = {
+    childList: true,
+    subtree: true,
+    attributes: true,
+  };
+
+  const observer = new MutationObserver(() => {
+    if (!audio.muted) {
+      console.log("audio playing after next");
+      playBtn.classList.add("hidden");
+      pauseBtn.classList.remove("hidden");
+    }
+  });
+  observer.observe(audio, observerOptions);
+};
 
 export const isFinished = () => {
   clearTimeout(interval);

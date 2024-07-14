@@ -9,10 +9,10 @@
   <body class="bg-gray-500 max-h-screen">
     <div
       id="app"
-      class="flex w-[400px] mx-auto items-center justify-center gap-1"
+      class="flex w-[400px] p-5 mx-auto items-center justify-center gap-1"
     >
       <div class="w-[400px] mt-5 border border-stone-950 rounded-md p-3">
-        <div class="flex justify-between">
+        <div id="trackInfo" class="flex justify-between">
           <div class="">
             <audio src="" id="audio"></audio>
             <h2 class="text-2xl font-bold text-gray-300" id="title">Title</h2>
@@ -47,7 +47,7 @@
         <div class="flex gap-1 justify-center">
           <button
             id="prevBtn"
-            class="prevBtn border border-stone-800 p-1 rounded-full active:scale-90"
+            class="prevBtn border-2 border-stone-800 p-1 rounded-full active:scale-90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-5 pointer-events-none"
+              class="size-7 pointer-events-none"
             >
               <path
                 stroke-linecap="round"
@@ -72,7 +72,7 @@
           </button>
           <button
             id="playBtn"
-            class="border border-stone-800 p-1 rounded-full active:scale-90"
+            class="border-2 border-stone-800 p-1 rounded-full active:scale-90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-5"
+              class="size-7"
             >
               <path
                 stroke-linecap="round"
@@ -92,7 +92,7 @@
 
           <button
             id="pauseBtn"
-            class="border hidden border-stone-800 p-1 rounded-full active:scale-90"
+            class="border-2 hidden border-stone-800 p-1 rounded-full active:scale-90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-5"
+              class="size-7"
             >
               <path
                 stroke-linecap="round"
@@ -112,7 +112,7 @@
 
           <button
             id="nextBtn"
-            class="nextBtn border border-stone-800 p-1 rounded-full active:scale-90"
+            class="nextBtn border-2 border-stone-800 p-1 rounded-full active:scale-90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-5 pointer-events-none"
+              class="size-7 pointer-events-none"
             >
               <path
                 stroke-linecap="round"

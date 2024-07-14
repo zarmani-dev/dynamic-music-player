@@ -1,7 +1,7 @@
-// import { trackObserverHandler } from "./handler";
+import { preNextObserver } from "./handler";
 
-// const observer = () => {
-//   trackObserverHandler();
-// };
+const observer = () => {
+  preNextObserver();
+};
 
-// export default observer;
+export default observer;

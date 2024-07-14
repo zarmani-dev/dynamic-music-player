@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "convert": "^5.3.0",
+    "ldrs": "^1.0.2",
+    "serve": "^14.2.3",
     "time-convert": "^0.0.2"
   }
 }

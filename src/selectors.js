@@ -2,6 +2,7 @@ export const audio = document.querySelector("#audio");
 export const currentTime = document.querySelector("#currentTime");
 export const duration = document.querySelector("#duration");
 export const playBtn = document.querySelector("#playBtn");
+export const trackInfo = document.querySelector("#trackInfo");
 export const pauseBtn = document.querySelector("#pauseBtn");
 export const replayBtn = document.querySelector("#replayBtn");
 export const progressBar = document.querySelector("#progress-bar");
