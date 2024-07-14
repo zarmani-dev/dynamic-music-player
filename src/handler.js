@@ -2,6 +2,7 @@ import {
   audio,
   currentTime,
   duration,
+  pauseBtn,
   playBtn,
   progressArea,
   progressBar,
@@ -31,12 +32,17 @@ const setTrack = (index) => {
 setTrack(0);
 export const playBtnHandler = () => {
   console.log("audio play btn");
+  playBtn.classList.toggle("hidden");
+  pauseBtn.classList.toggle("hidden");
   //   setTrack(0);
   playTrack();
 };
 
 export const pauseBtnHandler = () => {
   audio.pause();
+
+  playBtn.classList.toggle("hidden");
+  pauseBtn.classList.toggle("hidden");
   clearInterval(interval);
 };
 
@@ -79,7 +85,7 @@ export const prevBtnHandler = () => {
 //   });
 // };
 
-export const loadTrack = (track, volume = 0.05) => {
+export const loadTrack = (track, volume = 0.15) => {
   let formattedDuration = calculateTimeStamp(track.duration);
   let formattedCurrentTime = calculateTimeStamp(track.currentTime);
   currentTime.innerText = `${zeroPrefix(
