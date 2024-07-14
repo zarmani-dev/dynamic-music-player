@@ -2,6 +2,8 @@ import {
   audio,
   currentTime,
   duration,
+  dynamicArea,
+  dynamicChild,
   pauseBtn,
   playBtn,
   progressArea,
@@ -35,6 +37,7 @@ setTrack(0);
 
 export const playBtnHandler = () => {
   console.log("audio play btn");
+
   playPauseBtnHandler();
   //   setTrack(0);
   playTrack();
@@ -137,8 +140,27 @@ export const progressBarHandler = () => {
 };
 
 const playPauseBtnHandler = () => {
-  playBtn.classList.toggle("hidden");
-  pauseBtn.classList.toggle("hidden");
+  playBtn.forEach((currentPlayBtn) => {
+    currentPlayBtn.classList.toggle("hidden");
+  });
+
+  if (dynamicArea.classList.contains("w-5")) {
+    dynamicArea.classList.remove("w-5", "h-5");
+    dynamicArea.classList.add("w-full", "h-[190px]");
+  } else {
+    dynamicArea.classList.add("w-5", "h-5");
+    dynamicArea.classList.remove("w-full", "h-[190px]");
+  }
+  dynamicChild.forEach((el) => {
+    el.classList.toggle("invisible");
+  });
+
+  // dynamicArea.classList.toggle("w-5");
+  // dynamicArea.classList.toggle("w-full");
+  // dynamicArea.classList.toggle("w-full", dynamicArea.classList.contains("w-5"));
+  pauseBtn.forEach((currentPauseBtn) => {
+    currentPauseBtn.classList.toggle("hidden");
+  });
 };
 
 export const progressAreaHandler = (e) => {
@@ -164,8 +186,12 @@ export const preNextObserver = () => {
   const observer = new MutationObserver(() => {
     if (!audio.muted) {
       console.log("audio playing after next");
-      playBtn.classList.add("hidden");
-      pauseBtn.classList.remove("hidden");
+      playBtn.forEach((currentPlayBtn) => {
+        currentPlayBtn.classList.add("hidden");
+      });
+      pauseBtn.forEach((currentPauseBtn) => {
+        currentPauseBtn.classList.remove("hidden");
+      });
     }
   });
   observer.observe(audio, observerOptions);

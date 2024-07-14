@@ -11,6 +11,7 @@ import {
 } from "./handler";
 import {
   audio,
+  dynamicArea,
   nextBtn,
   pauseBtn,
   playBtn,
@@ -21,8 +22,15 @@ import {
 } from "./selectors";
 
 const listener = () => {
-  playBtn.addEventListener("click", playBtnHandler);
-  pauseBtn.addEventListener("click", pauseBtnHandler);
+  dynamicArea.addEventListener("animationend", () => {
+    console.log("Animation end");
+  });
+  playBtn.forEach((currentPlayBtn) => {
+    currentPlayBtn.addEventListener("click", playBtnHandler);
+  });
+  pauseBtn.forEach((currentPlayBtn) => {
+    currentPlayBtn.addEventListener("click", pauseBtnHandler);
+  });
   //   audio.addEventListener("loadeddata", loadTrack);
   replayBtn.addEventListener("click", replayBtnHandler);
   audio.addEventListener("timeupdate", progressBarHandler);
